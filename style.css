@@ -545,3 +545,13 @@ footer{
     padding: 15px 30px;
   }
 }
+.navbar {
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 70px;
+    width: auto;
+}
