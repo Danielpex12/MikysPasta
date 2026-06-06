@@ -560,3 +560,60 @@ footer{
     height: 600px;
     display: block;
 }
+/* ======================================================= */
+/* EFECTO VISUAL: IMÁGENES FLOTANTES EN EL MENÚ (HOVER)    */
+/* ======================================================= */
+
+/* Preparamos la celda de texto para ser el eje de coordenadas */
+.menu-item-hover {
+  position: relative;
+  cursor: pointer;
+  color: #F8E8AD !important; /* Color crema para resaltar que es interactivo */
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+/* Cambio sutil al pasar el mouse por el texto */
+.menu-item-hover:hover {
+  color: #ffffff !important;
+  text-decoration: underline;
+}
+
+/* Estado base oculto de las imágenes de vista previa */
+.menu-item-hover .preview-img {
+  position: absolute;
+  bottom: 140%; /* Se posiciona flotando por encima del texto */
+  left: 50%;
+  transform: translateX(-50%) scale(0.8); /* Centrada y ligeramente encogida */
+  width: 160px; /* Ancho de la miniatura */
+  height: 120px; /* Alto de la miniatura */
+  object-fit: cover; /* Recorta la imagen limpiamente sin deformarla */
+  border-radius: 12px;
+  border: 3px solid #F8E8AD; /* Combinación con la pizarra amarilla */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); /* Sombra pesada para dar profundidad */
+  opacity: 0;
+  pointer-events: none; /* Crucial para que el mouse no choque con la foto y cause parpadeos */
+  z-index: 999; /* Se superpone ante cualquier otro elemento de la web */
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.25s ease;
+}
+
+/* Estado activo: Muestra la miniatura con un efecto suave de "pop" */
+.menu-item-hover:hover .preview-img {
+  opacity: 1;
+  transform: translateX(-50%) scale(1); /* Vuelve a su tamaño real con rebote */
+}
+
+/* Modificación específica para la Lasaña (al ser un botón ovalado requiere otra altura) */
+.lasagna-pill.menu-item-hover .preview-img {
+  bottom: 110%;
+}
+
+/* Desactivamos el efecto en pantallas móviles para optimizar el rendimiento táctil */
+@media (max-width: 768px) {
+  .menu-item-hover .preview-img {
+    display: none !important;
+  }
+  .menu-item-hover {
+    cursor: default;
+    text-decoration: none !important;
+  }
+}
